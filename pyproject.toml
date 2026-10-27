@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "confluence-sync"
+version = "0.1.0"
+description = "Explicit local sync of Confluence Cloud pages into local-docs-rag"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27,<1",
+    "keyring>=25,<27",
+    "local-docs-rag @ git+https://github.com/OsenLiu/local-docs-rag.git@bf88a3156375bf065bb9791f87b6d564f43ac651",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+confluence-sync = "confluence_sync.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
